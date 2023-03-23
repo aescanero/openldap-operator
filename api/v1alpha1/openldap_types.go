@@ -28,14 +28,18 @@ type OpenldapSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 
-	// Foo is an example field of Openldap. Edit openldap_types.go to remove/update
-	Foo string `json:"foo,omitempty"`
+	Base      string `json:"config.base,omitempty"`
+	LdapPort  int32  `json:"config.ldap_port,omitempty"`
+	LdapsPort int32  `json:"config.ldaps_port,omitempty"`
+	Debug     int32  `json:"config.debug,omitempty"`
 }
 
 // OpenldapStatus defines the observed state of Openldap
 type OpenldapStatus struct {
 	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
+	//MultimasterStatus string             `json:"multimaster_status"`
+	Conditions []metav1.Condition `json:"conditions"`
 }
 
 //+kubebuilder:object:root=true
