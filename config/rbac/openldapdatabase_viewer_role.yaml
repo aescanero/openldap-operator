@@ -1,0 +1,27 @@
+# permissions for end users to view openldapdatabases.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: openldapdatabase-viewer-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: openldap-operator
+    app.kubernetes.io/part-of: openldap-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: openldapdatabase-viewer-role
+rules:
+- apiGroups:
+  - services.disasterproject.com
+  resources:
+  - openldapdatabases
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - services.disasterproject.com
+  resources:
+  - openldapdatabases/status
+  verbs:
+  - get

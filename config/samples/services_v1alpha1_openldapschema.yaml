@@ -1,0 +1,12 @@
+apiVersion: services.disasterproject.com/v1alpha1
+kind: OpenldapSchema
+metadata:
+  labels:
+    app.kubernetes.io/name: openldapschema
+    app.kubernetes.io/instance: openldapschema-sample
+    app.kubernetes.io/part-of: openldap-operator
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: openldap-operator
+  name: openldapschema-sample
+spec:
+  # TODO(user): Add fields here

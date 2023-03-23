@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  openldap-operator:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2023-03-23T23:11:04.223897893+01:00"
+    description: A Helm chart for an Openldap Operator
+    digest: 73417e2c8e64301a73ee4657667e5c7726273446c52d245e7dd2b56247e1f948
+    name: openldap-operator
+    type: application
+    urls:
+    - https://github.com/aescanero/openldap-operator/openldap-operator-0.1.0.tgz
+    version: 0.1.0
+generated: "2023-03-23T23:11:04.222108268+01:00"

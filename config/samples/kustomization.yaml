@@ -1,0 +1,6 @@
+## Append samples you want in your CSV to this file as resources ##
+resources:
+- services_v1alpha1_openldap.yaml
+- services_v1alpha1_openldapdatabase.yaml
+- services_v1alpha1_openldapschema.yaml
+#+kubebuilder:scaffold:manifestskustomizesamples
