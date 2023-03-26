@@ -1,0 +1,21 @@
+{{- if .Values.webhook.certManagerCert }}
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  labels:
+    app.kubernetes.io/component: certificate
+    app.kubernetes.io/created-by: {{ include "openldap.fullname" . }}
+    app.kubernetes.io/instance: serving-cert
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: certificate
+    app.kubernetes.io/part-of: {{ include "openldap.fullname" . }}
+  name: {{ include "openldap.fullname" . }}-serving-cert
+spec:
+  dnsNames:
+  - {{ include "openldap.fullname" . }}-webhook-service.{{ include "openldap.fullname" . }}-system.svc
+  - {{ include "openldap.fullname" . }}-webhook-service.{{ include "openldap.fullname" . }}-system.svc.cluster.local
+  issuerRef:
+    kind: Issuer
+    name: {{ include "openldap.fullname" . }}-selfsigned-issuer
+  secretName: webhook-server-cert
+{{- end }}

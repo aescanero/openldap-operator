@@ -40,6 +40,8 @@ helm.sh/chart: {{ include "openldap.chart" . }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
+app.kubernetes.io/part-of: {{ .Release.Service }}
+app.kubernetes.io/created-by: {{ .Release.Service }}
 {{- end }}
 
 {{/*
@@ -48,6 +50,7 @@ Selector labels
 {{- define "openldap.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "openldap.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
+control-plane: {{ include "openldap.name" . }}-controller-manager
 {{- end }}
 
 {{/*

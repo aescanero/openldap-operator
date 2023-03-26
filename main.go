@@ -110,6 +110,10 @@ func main() {
 		setupLog.Error(err, "unable to create controller", "controller", "OpenldapSchema")
 		os.Exit(1)
 	}
+	if err = (&servicesv1alpha1.Openldap{}).SetupWebhookWithManager(mgr); err != nil {
+		setupLog.Error(err, "unable to create webhook", "webhook", "Openldap")
+		os.Exit(1)
+	}
 	//+kubebuilder:scaffold:builder
 
 	if err := mgr.AddHealthzCheck("healthz", healthz.Ping); err != nil {

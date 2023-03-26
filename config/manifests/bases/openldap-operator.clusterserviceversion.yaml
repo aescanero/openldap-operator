@@ -1,0 +1,58 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: ClusterServiceVersion
+metadata:
+  annotations:
+    alm-examples: '[]'
+    capabilities: Basic Install
+  name: openldap-operator.v0.0.0
+  namespace: placeholder
+spec:
+  apiservicedefinitions: {}
+  customresourcedefinitions:
+    owned:
+    - description: OpenldapDatabase is the Schema for the openldapdatabases API
+      displayName: Openldap Database
+      kind: OpenldapDatabase
+      name: openldapdatabases.services.disasterproject.com
+      version: v1alpha1
+    - description: Openldap is the Schema for the openldaps API
+      displayName: Openldap
+      kind: Openldap
+      name: openldaps.services.disasterproject.com
+      version: v1alpha1
+    - description: OpenldapSchema is the Schema for the openldapschemas API
+      displayName: Openldap Schema
+      kind: OpenldapSchema
+      name: openldapschemas.services.disasterproject.com
+      version: v1alpha1
+  description: Operator for Openldap Service
+  displayName: openldap-operator
+  icon:
+  - base64data: ""
+    mediatype: ""
+  install:
+    spec:
+      deployments: null
+    strategy: ""
+  installModes:
+  - supported: false
+    type: OwnNamespace
+  - supported: false
+    type: SingleNamespace
+  - supported: false
+    type: MultiNamespace
+  - supported: true
+    type: AllNamespaces
+  keywords:
+  - openldap
+  links:
+  - name: Openldap Operator
+    url: https://openldap-operator.domain
+  maintainers:
+  - email: disasterproject.com
+    name: Alejandro Escanero Blanco
+  maturity: alpha
+  provider:
+    name: Alejandro Escanero Blanco <aescanero@disasterproject.com>
+    url: github.com/aescanero/openldap-operator
+  version: 0.0.0

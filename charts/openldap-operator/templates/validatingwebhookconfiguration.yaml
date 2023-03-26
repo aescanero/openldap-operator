@@ -1,0 +1,35 @@
+---
+{{- if .Values.webhook.enabled -}}
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingWebhookConfiguration
+metadata:
+  labels:
+    {{- include "openldap.labels" . | nindent 4 }}
+  name: {{ include "openldap.fullname" . }}-validating-webhook-configuration
+  {{- if .Values.webhook.certManagerCert }}
+  annotations:
+    cert-manager.io/inject-ca-from: "{{ .Release.Namespace }}/{{ .Values.webhook.certManagerCert }}"
+  {{- end }}
+webhooks:
+- admissionReviewVersions:
+  - v1alpha1
+  clientConfig:
+    caBundle: {{ .Values.webhook.caBundle }}
+    service:
+      name: {{ include "openldap.fullname" . }}-webhook-service
+      path: /validate-services-disasterproject-com-v1alpha1-openldap
+      namespace: {{ .Release.Namespace }}
+  failurePolicy: Fail
+  name: openldap-services-disasterproject-com-v1alpha1
+  rules:
+  - apiGroups:
+    - services.disasterproject.com
+    apiVersions:
+    - v1alpha1
+    operations:
+    - CREATE
+    - UPDATE
+    resources:
+    - openldaps
+  sideEffects: None
+{{- end -}}
