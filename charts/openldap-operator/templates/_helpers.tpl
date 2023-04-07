@@ -39,9 +39,9 @@ helm.sh/chart: {{ include "openldap.chart" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
-app.kubernetes.io/managed-by: {{ .Release.Service }}
-app.kubernetes.io/part-of: {{ .Release.Service }}
-app.kubernetes.io/created-by: {{ .Release.Service }}
+app.kubernetes.io/managed-by: {{ .Release.Name }}
+app.kubernetes.io/part-of: {{ .Release.Name }}
+app.kubernetes.io/created-by: {{ .Release.Name }}
 {{- end }}
 
 {{/*

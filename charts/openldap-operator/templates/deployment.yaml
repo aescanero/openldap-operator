@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   labels:
     {{- include "openldap.labels" . | nindent 4 }}
-    {{- include "openldap.selectorLabels" . | nindent 4 }}
   name: {{ include "openldap.fullname" . }}-controller-manager
 spec:
   replicas: {{ .Values.replicaCount }}
@@ -36,6 +35,20 @@ spec:
                 operator: In
                 values:
                 - linux
+      initContainers:
+      - name: update-webhook
+        image: docker.io/aescanero/micropki:0.1
+        command: ['/micropki']
+        args:
+        - update
+        - -caname
+        - "{{ include "openldap.fullname" . }}-ca"
+        - -certname
+        - "{{ include "openldap.fullname" . }}-webhook-secret"
+        - -fqdns
+        - "{{ include "openldap.serviceAccountName" . }}.{{.Release.Namespace}}.svc"
+        - -webhook
+        - {{ include "openldap.fullname" . }}-webhook-service
       containers:
       - args:
         - --secure-listen-address=0.0.0.0:8443
@@ -55,7 +68,7 @@ spec:
                 fieldPath: status.podIP
           {{- if .Values.webhook.enabled }}
           - name: WEBHOOK_SECRET
-            value: operator-openldap-webhook-secret
+            value: {{ include "openldap.fullname" . }}-webhook-secret
           {{- end }}
           {{- with .Values.env }}
             {{- toYaml . | nindent 10 }}
@@ -136,7 +149,7 @@ spec:
       - name: cert
         secret:
           defaultMode: 420
-          secretName: webhook-server-cert
+          secretName: {{ include "openldap.fullname" . }}-webhook-secret
 
           
 
