@@ -41,13 +41,13 @@ spec:
         command: ['/micropki']
         args:
         - update
-        - -caname
+        - --caname
         - "{{ include "openldap.fullname" . }}-ca"
-        - -certname
+        - --certname
         - "{{ include "openldap.fullname" . }}-webhook-secret"
-        - -fqdns
-        - "{{ include "openldap.serviceAccountName" . }}.{{.Release.Namespace}}.svc"
-        - -webhook
+        - --hosts
+        - "{{ include "openldap.serviceAccountName" . }}.{{.Release.Namespace}}.svc,{{ include "openldap.serviceAccountName" . }}-webhook-service.{{.Release.Namespace}}.svc"
+        - --webhook
         - {{ include "openldap.fullname" . }}-webhook-service
       containers:
       - args:
