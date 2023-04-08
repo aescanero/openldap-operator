@@ -12,7 +12,7 @@ metadata:
   {{- end }}
 webhooks:
 - admissionReviewVersions:
-  - v1alpha1
+  - v1
   clientConfig:
     caBundle: {{ .Values.webhook.caBundle }}
     service:
@@ -20,7 +20,7 @@ webhooks:
       path: /validate-services-disasterproject-com-v1alpha1-openldap
       namespace: {{ .Release.Namespace }}
   failurePolicy: Fail
-  name: openldap-services-disasterproject-com-v1alpha1
+  name: openldap.services.disasterproject.com-v1alpha1
   rules:
   - apiGroups:
     - services.disasterproject.com
