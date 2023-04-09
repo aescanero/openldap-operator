@@ -11,7 +11,7 @@ metadata:
   {{- end }}
 rules:
 - apiGroups:
-  - ""
+  - rbac.authorization.k8s.io
   resources:
   - clusterrolebindings
   verbs:
@@ -23,7 +23,7 @@ rules:
   - update
   - watch
 - apiGroups:
-  - ""
+  - rbac.authorization.k8s.io
   resources:
   - clusterroles
   verbs:
@@ -95,18 +95,29 @@ rules:
   resources:
   - openldapdatabases/finalizers
   verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
   - update
+  - watch
 - apiGroups:
   - services.disasterproject.com
   resources:
   - openldapdatabases/status
   verbs:
+  - create
+  - delete
   - get
+  - list
   - patch
   - update
+  - watch
 - apiGroups:
   - services.disasterproject.com
   resources:
+  - openldap
   - openldaps
   verbs:
   - create
@@ -119,17 +130,29 @@ rules:
 - apiGroups:
   - services.disasterproject.com
   resources:
+  - openldap/finalizers
   - openldaps/finalizers
   verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
   - update
+  - watch
 - apiGroups:
   - services.disasterproject.com
   resources:
+  - openldap/status
   - openldaps/status
   verbs:
+  - create
+  - delete
   - get
+  - list
   - patch
   - update
+  - watch
 - apiGroups:
   - services.disasterproject.com
   resources:
@@ -252,7 +275,7 @@ roleRef:
   name: {{ include "openldap.fullname" . }}-proxy-role
 subjects:
 - kind: ServiceAccount
-  name: {{ include "openldap.fullname" . }}
+  name: {{ include "openldap.serviceAccountName" . }}
   namespace: {{ .Release.Namespace }}
 ---
 apiVersion: rbac.authorization.k8s.io/v1
@@ -267,7 +290,7 @@ roleRef:
   name: {{ include "openldap.fullname" . }}-manager-role
 subjects:
 - kind: ServiceAccount
-  name: {{ include "openldap.fullname" . }}
+  name: {{ include "openldap.serviceAccountName" . }}
   namespace: {{ .Release.Namespace }}
 ---
 apiVersion: rbac.authorization.k8s.io/v1
@@ -305,7 +328,7 @@ rules:
   - list
   - update
   - patch
-{{- end -}}
+{{- end }}
 ---
 {{- if .Values.webhook.enabled -}}
 apiVersion: rbac.authorization.k8s.io/v1
@@ -320,6 +343,6 @@ roleRef:
   name: {{ include "openldap.fullname" . }}-webhook-role
 subjects:
 - kind: ServiceAccount
-  name: {{ include "openldap.fullname" . }}
+  name: {{ include "openldap.serviceAccountName" . }}
   namespace: {{ .Release.Namespace }}
 {{- end -}}
