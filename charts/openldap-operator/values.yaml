@@ -15,7 +15,7 @@ image:
   repository: docker.io/aescanero/openldap-controller
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "0.1"
+  tag: "0.1.1"
 
 imagePullSecrets: []
 nameOverride: ""
