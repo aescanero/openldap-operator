@@ -2,8 +2,8 @@ package variables
 
 import "k8s.io/apimachinery/pkg/api/resource"
 
-var ClusterRoleName string
-var ClusterRoleBindingName string
+var ClusterRoleName string = "openldap-node-clusterrole"
+var ClusterRoleBindingName string = "openldap-node-clusterrolebinding"
 var StatefulSetReplicas int32 = 1
 
 const LabelKey = "app"
