@@ -307,7 +307,7 @@ subjects:
 - kind: ServiceAccount
   name: {{ include "openldap.fullname" . }}
 ---
-{{- if .Values.webhook.enabled -}}
+{{- if .Values.webhook.enabled }}
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
@@ -330,7 +330,7 @@ rules:
   - patch
 {{- end }}
 ---
-{{- if .Values.webhook.enabled -}}
+{{- if .Values.webhook.enabled }}
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
