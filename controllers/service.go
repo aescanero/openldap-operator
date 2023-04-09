@@ -29,6 +29,7 @@ func (reconciler *OpenldapReconciler) defineService(openldap *servicesv1alpha1.O
 			Type: v1.ServiceTypeClusterIP,
 			Ports: []v1.ServicePort{{
 				Port:     variables.Port,
+				Name:     variables.PortName,
 				Protocol: "TCP",
 				TargetPort: intstr.IntOrString{
 					IntVal: variables.TargetPort,
@@ -36,6 +37,7 @@ func (reconciler *OpenldapReconciler) defineService(openldap *servicesv1alpha1.O
 			},
 				{
 					Port:     variables.TLSPort,
+					Name:     variables.TLSPortName,
 					Protocol: "TCP",
 					TargetPort: intstr.IntOrString{
 						IntVal: variables.TargetTLSPort,

@@ -30,6 +30,7 @@ func (reconciler *OpenldapReconciler) defineServiceHeadLess(openldap *servicesv1
 			ClusterIP: v1.ClusterIPNone,
 			Ports: []v1.ServicePort{{
 				Port:     variables.Port,
+				Name:     variables.PortName,
 				Protocol: "TCP",
 				TargetPort: intstr.IntOrString{
 					IntVal: variables.TargetPort,
@@ -37,6 +38,7 @@ func (reconciler *OpenldapReconciler) defineServiceHeadLess(openldap *servicesv1
 			},
 				{
 					Port:     variables.TLSPort,
+					Name:     variables.TLSPortName,
 					Protocol: "TCP",
 					TargetPort: intstr.IntOrString{
 						IntVal: variables.TargetTLSPort,

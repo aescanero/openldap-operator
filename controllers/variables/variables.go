@@ -16,8 +16,10 @@ const OpenldapImage = "docker.io/aescanero/openldap-node:0.1"
 const StatefulSetName = "openldap"
 const ServiceNameHeadLess = "openldap-headless"
 const Port int32 = 389
+const PortName string = "ldap"
 const TargetPort int32 = 1389
 const TLSPort int32 = 636
+const TLSPortName string = "ldaps"
 const TargetTLSPort int32 = 1636
 
 var GigaByte = resource.MustParse("1Gi")
