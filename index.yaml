@@ -2,13 +2,23 @@ apiVersion: v1
 entries:
   openldap-operator:
   - apiVersion: v2
-    appVersion: 0.1.0
-    created: "2023-03-23T23:05:52.217352843Z"
+    appVersion: 0.1.1
+    created: "2023-04-09T20:56:13.960916151+02:00"
     description: A Helm chart for an Openldap Operator
-    digest: 23a2e04030b7111dbe9bb556e51ec83cb2d943d8005401408bc999c577fc9e18
+    digest: 5c65a1dfd9803a27ae00f3743efe65c70055efd4a2b796d81b4f82f1fbbf0782
+    home: https://github.com/aescanero/openldap-operator
+    keywords:
+    - openldap
+    kubeVersion: '>= 1.21.0-0'
+    maintainers:
+    - email: aescanero@disasterproject.com
+      name: disasterproject-maintainer
+      url: https://www.disasterproject.com
     name: openldap-operator
+    sources:
+    - https://github.com/aescanero/openldap-operator
     type: application
     urls:
-    - https://github.com/aescanero/openldap-operator/releases/download/openldap-operator-0.1.0/openldap-operator-0.1.0.tgz
-    version: 0.1.0
-generated: "2023-03-23T23:05:52.217358443Z"
+    - https://github.com/aescanero/openldap-operator/openldap-operator-0.1.1.tgz
+    version: 0.1.1
+generated: "2023-04-09T20:56:13.958678439+02:00"
