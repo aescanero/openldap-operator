@@ -65,7 +65,7 @@ func (reconciler *OpenldapReconciler) defineStatefulSet(openldap *servicesv1alph
 										LocalObjectReference: v1.LocalObjectReference{
 											Name: variables.SecretName,
 										},
-										Key: variables.SecretName,
+										Key: variables.SecretKey,
 									},
 								}},
 								{
