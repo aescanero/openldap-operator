@@ -37,7 +37,7 @@ spec:
                 - linux
       initContainers:
       - name: update-webhook
-        image: docker.io/aescanero/micropki:0.1
+        image: "{{ .Values.pki.image.repository }}:{{ .Values.pki.image.tag }}"
         command: ['/micropki']
         args:
         - update
@@ -46,9 +46,9 @@ spec:
         - --certname
         - "{{ include "openldap.fullname" . }}-webhook-secret"
         - --hosts
-        - "{{ include "openldap.serviceAccountName" . }}.{{.Release.Namespace}}.svc,{{ include "openldap.serviceAccountName" . }}-webhook-service.{{.Release.Namespace}}.svc"
+        - "{{ include "openldap.fullname" . }}.{{.Release.Namespace}}.svc,{{ include "openldap.serviceAccountName" . }}-webhook-service.{{.Release.Namespace}}.svc"
         - --webhook
-        - {{ include "openldap.fullname" . }}-webhook-service
+        - {{ include "openldap.fullname" . }}-validating-webhook-configuration
       containers:
       - args:
         - --secure-listen-address=0.0.0.0:8443
@@ -91,7 +91,6 @@ spec:
         - --leader-elect
         command:
         - /manager
-        image: docker.io/aescanero/openldap-controller:0.1
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
         imagePullPolicy: {{ .Values.image.pullPolicy | default "IfNotPresent" }}
         livenessProbe:
@@ -150,6 +149,3 @@ spec:
         secret:
           defaultMode: 420
           secretName: {{ include "openldap.fullname" . }}-webhook-secret
-
-          
-
