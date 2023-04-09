@@ -4,3 +4,13 @@ description: A Helm chart for an Openldap Operator
 name: openldap-operator
 type: application
 version: 0.1.0
+kubeVersion: ">= 1.21.0-0"
+home: https://github.com/aescanero/openldap-operator
+keywords:
+  - openldap
+sources:
+  - https://github.com/aescanero/openldap-operator
+maintainers:
+  - name: disasterproject-maintainer
+    email: aescanero@disasterproject.com
+    url: https://www.disasterproject.com

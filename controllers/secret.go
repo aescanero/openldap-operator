@@ -17,7 +17,7 @@ import (
 func (reconciler *OpenldapReconciler) defineSecret(openldap *servicesv1alpha1.Openldap) *v1.Secret {
 	labels := map[string]string{variables.LabelKey: variables.LabelValue}
 	stringData := map[string]string{
-		"adminPassword": utils.Random(10),
+		variables.SecretKey: utils.Random(10),
 	}
 	secret := &v1.Secret{
 		TypeMeta:   metav1.TypeMeta{APIVersion: "v1", Kind: "Secret"},

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    {{- include "openldap.labels" . | nindent 4 }}
+    {{- include "openldap.selectorLabels" . | nindent 4 }}
+  name: {{ include "openldap.fullname" . }}-controller-manager-metrics-service
+spec:
+  ports:
+  - name: https
+    port: 8443
+    protocol: TCP
+    targetPort: https
+  selector:
+    {{- include "openldap.selectorLabels" . | nindent 4 }}
